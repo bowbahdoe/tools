@@ -51,6 +51,7 @@ public final class PMDArguments extends ToolArguments {
 
 
     public PMDArguments positionalInputPaths(List<?> paths) {
+        arguments(paths);
         paths.forEach(path -> add(toArgumentString(path)));
         return this;
     }
@@ -93,7 +94,7 @@ public final class PMDArguments extends ToolArguments {
     //                               run with the most up-to-date rule violations.
     public PMDArguments __cache(Object cacheLocation) {
         add("--cache");
-        add(toArgumentString(cacheLocation));
+        argument(cacheLocation);
         return this;
     }
 
@@ -153,13 +154,13 @@ public final class PMDArguments extends ToolArguments {
     //                               Default: UTF-8
     public PMDArguments _e(Object encoding) {
         add("-e");
-        add(toArgumentString(encoding));
+        argument(encoding);
         return this;
     }
 
     public PMDArguments __encoding(Object encoding) {
         add("--encoding");
-        add(toArgumentString(encoding));
+        argument(encoding);
         return this;
     }
     //  -f, --format=<format>      Report format.
@@ -171,7 +172,7 @@ public final class PMDArguments extends ToolArguments {
     //                               Default: text
     public PMDArguments _f(Object format) {
         add("-f");
-        add(toArgumentString(format));
+        argument(format);
         return this;
     }
 

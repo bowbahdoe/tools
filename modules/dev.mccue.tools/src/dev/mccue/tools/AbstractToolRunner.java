@@ -85,4 +85,8 @@ public non-sealed abstract class AbstractToolRunner<
     public final Arguments arguments() {
         return arguments;
     }
+
+    public void arguments(Consumer<? super Arguments> consumer) {
+        consumer.accept(arguments);
+    }
 }

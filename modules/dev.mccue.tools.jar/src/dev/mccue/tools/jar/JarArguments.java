@@ -8,6 +8,28 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/// Usage: `jar [OPTION...] [ [--release VERSION] [-C dir] files] ...`
+///
+/// jar creates an archive for classes and resources, and can manipulate or
+/// restore individual classes or resources from an archive.
+///
+/// # Examples:
+///
+/// ## Create an archive called classes.jar with two class files:
+///
+/// ```bash
+/// jar --create --file classes.jar Foo.class Bar.class
+/// ```
+///
+/// ```java
+/// Jar.run(arguments -> {
+///    arguments
+///        .__create()
+///        .__file(Path.of("classes.jar"))
+///        .argument(Path.of("Foo.class"))
+///        .argument(Path.of("Bar.class"));
+/// });
+/// ```
 public final class JarArguments extends ToolArguments {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
@@ -20,6 +42,7 @@ public final class JarArguments extends ToolArguments {
     public JarArguments(Collection<? extends String> c) {
         super(c);
     }
+
 
     //Usage: jar [OPTION...] [ [--release VERSION] [-C dir] files] ...
     //jar creates an archive for classes and resources, and can manipulate or
@@ -79,12 +102,27 @@ public final class JarArguments extends ToolArguments {
     //  -i, --generate-index=FILE  Generate index information for the specified jar
     //                             archives. This option is deprecated and may be
     //                             removed in a future release.
+
+    /**
+     * Generate index information for the specified jar
+     * archives. This option is deprecated and may be
+     * removed in a future release.
+     * @param file A file
+     * @return this.
+     */
     public JarArguments _i(Object file) {
         add("-i");
         add(toArgumentString(file));
         return this;
     }
 
+    /**
+     * Generate index information for the specified jar
+     * archives. This option is deprecated and may be
+     * removed in a future release.
+     * @param file A file
+     * @return this.
+     */
     public JarArguments __generate_index(Object file) {
         add("--generate-index");
         add(toArgumentString(file));
@@ -112,11 +150,19 @@ public final class JarArguments extends ToolArguments {
 
     //  -u, --update               Update an existing jar archive
 
+    /**
+     * Update an existing jar archive
+     * @return this.
+     */
     public JarArguments _u() {
         add("-u");
         return this;
     }
 
+    /**
+     * Update an existing jar archive
+     * @return this.
+     */
     public JarArguments __update() {
         add("--update");
         return this;
@@ -125,11 +171,19 @@ public final class JarArguments extends ToolArguments {
     //  -x, --extract              Extract named (or all) files from the archive
 
 
+    /**
+     * Extract named (or all) files from the archive
+     * @return this.
+     */
     public JarArguments _x() {
         add("-x");
         return this;
     }
 
+    /**
+     * Extract named (or all) files from the archive
+     * @return this.
+     */
     public JarArguments __extract() {
         add("--extract");
         return this;
@@ -137,21 +191,31 @@ public final class JarArguments extends ToolArguments {
 
     //  -d, --describe-module      Print the module descriptor, or automatic module name
 
+    /**
+     * Print the module descriptor, or automatic module name
+     * @return this.
+     */
     public JarArguments _d() {
         add("-d");
         return this;
     }
 
+    /**
+     * Print the module descriptor, or automatic module name
+     * @return this.
+     */
     public JarArguments __describe_module() {
         add("--describe-module");
         return this;
     }
 
-    //      --validate             Validate the contents of the jar archive. This option
-    //                             will validate that the API exported by a multi-release
-    //                             jar archive is consistent across all different release
-    //                             versions.
-
+    /**
+     * Validate the contents of the jar archive. This option
+     * will validate that the API exported by a multi-release
+     * jar archive is consistent across all different release
+     * versions.
+     * @return this.
+     */
     public JarArguments __validate() {
         add("--validate");
         return this;
@@ -163,6 +227,13 @@ public final class JarArguments extends ToolArguments {
     //  -C DIR                     Change to the specified directory and include the
     //                             following file
 
+    /**
+     * Change to the specified directory and include the
+     * following file.
+     * @param dir DIR
+     * @param file file
+     * @return this.
+     */
     public JarArguments _C(Object dir, Object file) {
         add("-C");
         add(toArgumentString(dir));
@@ -173,12 +244,24 @@ public final class JarArguments extends ToolArguments {
     //  -f, --file=FILE            The archive file name. When omitted, either stdin or
     //                             stdout is used based on the operation
 
+    /**
+     * The archive file name. When omitted, either stdin or
+     * stdout is used based on the operation.
+     * @param file FILE
+     * @return this.
+     */
     public JarArguments _f(Object file) {
         add("-f");
         add(toArgumentString(file));
         return this;
     }
 
+    /**
+     * The archive file name. When omitted, either stdin or
+     * stdout is used based on the operation.
+     * @param file FILE
+     * @return this.
+     */
     public JarArguments __file(Object file) {
         add("--file");
         add(toArgumentString(file));
@@ -187,6 +270,13 @@ public final class JarArguments extends ToolArguments {
 
     //      --release VERSION      Places all following files in a versioned directory
     //                             of the jar (i.e. META-INF/versions/VERSION/)
+
+    /**
+     * Places all following files in a versioned directory
+     * of the jar (i.e. META-INF/versions/VERSION/)
+     * @param version VERSION
+     * @return this.
+     */
     public JarArguments __release(Object version) {
         add("--release");
         add(toArgumentString(version));
@@ -194,11 +284,20 @@ public final class JarArguments extends ToolArguments {
     }
 
     //  -v, --verbose              Generate verbose output on standard output
+
+    /**
+     * Generate verbose output on standard output
+     * @return this.
+     */
     public JarArguments _v() {
         add("-v");
         return this;
     }
 
+    /**
+     * Generate verbose output on standard output
+     * @return this.
+     */
     public JarArguments __verbose() {
         add("--verbose");
         return this;
@@ -273,12 +372,7 @@ public final class JarArguments extends ToolArguments {
 
     public JarArguments _p(List<?> path) {
         add("-p");
-        add(
-                path
-                        .stream()
-                        .map(JarArguments::toArgumentString)
-                        .collect(Collectors.joining(File.pathSeparator))
-        );
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
@@ -288,12 +382,7 @@ public final class JarArguments extends ToolArguments {
 
     public JarArguments __module_path(List<?> path) {
         add("--module-path");
-        add(
-                path
-                        .stream()
-                        .map(JarArguments::toArgumentString)
-                        .collect(Collectors.joining(File.pathSeparator))
-        );
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
@@ -315,6 +404,12 @@ public final class JarArguments extends ToolArguments {
     //      --date=TIMESTAMP       The timestamp in ISO-8601 extended offset date-time with
     //                             optional time-zone format, to use for the timestamps of
     //                             entries, e.g. "2022-02-12T12:30:00-05:00"
+
+    /**
+     *
+     * @param timestamp
+     * @return
+     */
     public JarArguments __date(Object timestamp) {
         add("--date");
         add(toArgumentString(timestamp));
@@ -340,13 +435,23 @@ public final class JarArguments extends ToolArguments {
         return this;
     }
 
+
     //      --help-extra           Give help on extra options
+    /**
+     * Give help on extra options
+     * @return this.
+     */
     public JarArguments __help_extra() {
         add("--help-extra");
         return this;
     }
 
     //      --version              Print program version
+
+    /**
+     * Print program version
+     * @return this.
+     */
     public JarArguments __version() {
         add("--version");
         return this;

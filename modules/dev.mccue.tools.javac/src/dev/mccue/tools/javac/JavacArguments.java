@@ -23,18 +23,18 @@ public final class JavacArguments extends ToolArguments {
         super(c);
     }
 
-// Usage: javac <options> <source files>
+    // Usage: javac <options> <source files>
     public JavacArguments sourceFiles(Object... files) {
         return sourceFiles(Arrays.asList(files));
     }
 
     public JavacArguments sourceFiles(List<?> files) {
-        files.forEach(file -> add(toArgumentString(file)));
+        arguments(files);
         return this;
     }
 
-//where possible options include:
-//  @<filename>                  Read options and filenames from file
+    //where possible options include:
+    //  @<filename>                  Read options and filenames from file
     public JavacArguments argumentFile(Object filename) {
         add("@" + toArgumentString(filename));
         return this;
@@ -61,7 +61,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __add_modules(List<?> modules) {
         add("--add-modules");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(",")));
+        separatedArgument(",", modules);
         return this;
     }
 
@@ -73,7 +73,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __boot_class_path(List<?> path) {
         add("--boot-class-path");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
@@ -83,36 +83,63 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _bootclasspath(List<?> path) {
         add("--boot-class-path");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
 //  --class-path <path>, -classpath <path>, -cp <path>
 //        Specify where to find user class files and annotation processors
+
+    /**
+     * Specify where to find user class files and annotation processors
+     * @param path path
+     * @return this.
+     */
     public JavacArguments __class_path(Object... path) {
         return __class_path(Arrays.asList(path));
     }
 
+    /**
+     * Specify where to find user class files and annotation processors
+     * @param path path
+     * @return this.
+     */
     public JavacArguments __class_path(List<?> path) {
         add("--class-path");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
+    /**
+     * Specify where to find user class files and annotation processors
+     * @param path path
+     * @return this.
+     */
     public JavacArguments _cp(Object... path) {
         return _cp(Arrays.asList(path));
     }
 
+    /**
+     * Specify where to find user class files and annotation processors
+     * @param path path
+     * @return this.
+     */
     public JavacArguments _cp(List<?> path) {
         add("-cp");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
 //  -d <directory>               Specify where to place generated class files
+
+    /**
+     * Specify where to place generated class files
+     * @param directory directory
+     * @return this.
+     */
     public JavacArguments _d(Object directory) {
         add("-d");
-        add(toArgumentString(directory));
+        argument(directory);
         return this;
     }
 
@@ -145,7 +172,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _endorseddirs(List<?> dirs) {
         add("-endorseddirs");
-        add(dirs.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, dirs);
         return this;
     }
 
@@ -156,7 +183,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _extdirs(List<?> dirs) {
         add("-extdirs");
-        add(dirs.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, dirs);
         return this;
     }
 
@@ -168,11 +195,19 @@ public final class JavacArguments extends ToolArguments {
         ALL, NONE, LINES, VAR, SOURCE
     }
 
+    /**
+     * Generate all debugging info
+     * @return this.
+     */
     public JavacArguments _g() {
         add("-g");
         return this;
     }
 
+    /**
+     * Generate only some debugging info
+     * @return this.
+     */
     public JavacArguments _g(DebuggingInfo option) {
         if (option.equals(DebuggingInfo.ALL)) {
             add("-g");
@@ -243,7 +278,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __limit_modules(List<?> modules) {
         add("--limit-modules");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(",")));
+        separatedArgument(",", modules);
         return this;
     }
 //  --module <module>(,<module>)*, -m <module>(,<module>)*
@@ -254,7 +289,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __module(List<?> modules) {
         add("--module");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(",")));
+        separatedArgument(",", modules);
         return this;
     }
 
@@ -264,7 +299,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _m(List<?> modules) {
         add("-m");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(",")));
+        separatedArgument(",", modules);
         return this;
     }
 //  --module-path <path>, -p <path>
@@ -275,7 +310,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __module_path(List<?> modules) {
         add("--module-path");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, modules);
         return this;
     }
 
@@ -285,15 +320,15 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _p(List<?> modules) {
         add("-p");
-        add(modules.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
-        return this;
+        separatedArgument(File.pathSeparator, modules);
+         return this;
     }
 
 //  --module-source-path <module-source-path>
 //        Specify where to find input source files for multiple modules
     public JavacArguments __module_source_path(Object moduleSourcePath) {
         add("--module-source-path");
-        add(toArgumentString(moduleSourcePath));
+        argument(moduleSourcePath);
         return this;
     }
 
@@ -301,7 +336,7 @@ public final class JavacArguments extends ToolArguments {
 //        Specify version of modules that are being compiled
     public JavacArguments __module_version(Object version) {
         add("--module-version");
-        add(toArgumentString(version));
+        argument(version);
         return this;
     }
 
@@ -338,7 +373,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _processor(List<?> classNames) {
         add("-processor");
-        add(classNames.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(",")));
+        separatedArgument(",", classNames);
         return this;
     }
 
@@ -350,7 +385,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __processor_module_path(List<?> path) {
         add("--processor-module-path");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
@@ -362,7 +397,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __processor_path(List<?> path) {
         add("--processor-path");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
@@ -370,7 +405,7 @@ public final class JavacArguments extends ToolArguments {
 //        Check that API used is available in the specified profile.
 //        This option is deprecated and may be removed in a future release.
     public JavacArguments _profile(Object profile) {
-        add(toArgumentString(profile));
+        argument(profile);
         return this;
     }
 
@@ -380,14 +415,14 @@ public final class JavacArguments extends ToolArguments {
 //            8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
     public JavacArguments __release(Object value) {
         add("--release");
-        add(toArgumentString(value));
+        argument(value);
         return this;
     }
 
 //  -s <directory>               Specify where to place generated source files
     public JavacArguments _s(Object value) {
         add("-s");
-        add(toArgumentString(value));
+        argument(value);
         return this;
     }
 
@@ -397,13 +432,13 @@ public final class JavacArguments extends ToolArguments {
 //            8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
     public JavacArguments __source(Object value) {
         add("--source");
-        add(toArgumentString(value));
+        argument(value);
         return this;
     }
 
     public JavacArguments _source(Object value) {
         add("-source");
-        add(toArgumentString(value));
+        argument(value);
         return this;
     }
 
@@ -415,7 +450,7 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments __source_path(List<?> path) {
         add("--source-path");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
@@ -425,14 +460,20 @@ public final class JavacArguments extends ToolArguments {
 
     public JavacArguments _sourcepath(List<?> path) {
         add("-sourcepath");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
 //  --system <jdk>|none          Override location of system modules
-    public JavacArguments __system(Object value) {
+
+    /**
+     * Override location of system modules
+     * @param location jdk | none
+     * @return this
+     */
+    public JavacArguments __system(Object location) {
         add("--system");
-        add(toArgumentString(value));
+        argument(location);
         return this;
     }
 
@@ -440,48 +481,91 @@ public final class JavacArguments extends ToolArguments {
 //        Generate class files suitable for the specified Java SE release.
 //        Supported releases:
 //            8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
-    public JavacArguments __target(Object value) {
+    /**
+     * Generate class files suitable for the specified Java SE release.
+     * Supported releases:
+     *     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
+     * @param release release
+     * @return this.
+     */
+    public JavacArguments __target(Object release) {
         add("--target");
-        add(toArgumentString(value));
+        argument(release);
         return this;
     }
 
-    public JavacArguments _target(Object value) {
+    /**
+     * Generate class files suitable for the specified Java SE release.
+     * Supported releases:
+     *     8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
+     * @param release release
+     * @return this.
+     */
+    public JavacArguments _target(Object release) {
         add("-target");
-        add(toArgumentString(value));
+        argument(release);
         return this;
     }
 
 //  --upgrade-module-path <path>
 //        Override location of upgradeable modules
+
+    /**
+     * Create new scratch file from selection
+     * @param path path
+     * @return this.
+     */
     public JavacArguments __upgrade_module_path(Object... path) {
         return __upgrade_module_path(Arrays.asList(path));
     }
 
+    /**
+     * Create new scratch file from selection
+     * @param path path
+     * @return this.
+     */
     public JavacArguments __upgrade_module_path(List<?> path) {
         add("--upgrade-module-path");
-        add(path.stream().map(JavacArguments::toArgumentString).collect(Collectors.joining(File.pathSeparator)));
+        separatedArgument(File.pathSeparator, path);
         return this;
     }
 
 //  -verbose                     Output messages about what the compiler is doing
+
+    /**
+     * Output messages about what the compiler is doing
+     * @return this.
+     */
     public JavacArguments _verbose() {
         add("-verbose");
         return this;
     }
 
 //  --version, -version          Version information
+    /**
+     * Version information
+     * @return this.
+     */
     public JavacArguments __version() {
         add("--version");
         return this;
     }
 
+    /**
+     * Version information
+     * @return this.
+     */
     public JavacArguments _version() {
         add("-version");
         return this;
     }
 
 //  -Werror                      Terminate compilation if warnings occur
+
+    /**
+     * Terminate compilation if warnings occur
+     * @return this.
+     */
     public JavacArguments _Werror() {
         add("-Werror");
         return this;
