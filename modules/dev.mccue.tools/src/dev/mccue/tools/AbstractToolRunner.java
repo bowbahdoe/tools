@@ -86,7 +86,9 @@ public non-sealed abstract class AbstractToolRunner<
         return arguments;
     }
 
-    public void arguments(Consumer<? super Arguments> consumer) {
+    @SuppressWarnings("unchecked")
+    public final Self arguments(Consumer<? super Arguments> consumer) {
         consumer.accept(arguments);
+        return (Self) this;
     }
 }

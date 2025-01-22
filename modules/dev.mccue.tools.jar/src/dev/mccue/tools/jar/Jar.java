@@ -65,5 +65,4 @@ public final class Jar extends AbstractToolRunner<Jar, JarArguments> {
     public static void run(Consumer<? super JarArguments> consumer) throws ExitStatusException {
         runner(consumer).run();
     }
-
 }
