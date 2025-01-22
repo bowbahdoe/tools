@@ -45,7 +45,7 @@ compile: clean
       --module-source-path "./modules/*/src" \
       -g \
       --release 21 \
-      --module-version 2025.01.20 \
+      --module-version 2025.01.21 \
       --module-path modules/dev.mccue.tools.jstage/libs \
       -d build/javac \
       --module dev.mccue.tools.jstage
