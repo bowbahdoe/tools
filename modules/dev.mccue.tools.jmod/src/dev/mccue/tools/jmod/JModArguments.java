@@ -21,6 +21,31 @@ public final class JModArguments extends ToolArguments {
         super(c);
     }
 
+    public JModArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JModArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JModArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JModArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JModArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     public JModArguments jmodFile(Object file) {
         add(toArgumentString(file));
         return this;

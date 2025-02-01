@@ -21,6 +21,31 @@ public final class JavaArguments extends ToolArguments {
         super(c);
     }
 
+    public JavaArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JavaArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JavaArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JavaArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JavaArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     // Usage: java [options] <mainclass> [args...]
     //           (to execute a class)
     //   or  java [options] -jar <jarfile> [args...]

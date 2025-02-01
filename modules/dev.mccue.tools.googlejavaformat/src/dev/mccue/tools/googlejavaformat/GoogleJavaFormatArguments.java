@@ -19,6 +19,31 @@ public final class GoogleJavaFormatArguments extends ToolArguments {
         super(c);
     }
 
+    public GoogleJavaFormatArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public GoogleJavaFormatArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public GoogleJavaFormatArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public GoogleJavaFormatArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public GoogleJavaFormatArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     // java -jar format.jar --help
     //
     //Usage: google-java-format [options] file(s)

@@ -21,6 +21,31 @@ public final class JLinkArguments extends ToolArguments {
         super(c);
     }
 
+    public JLinkArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JLinkArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JLinkArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JLinkArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JLinkArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     // Usage: jlink <options> --module-path <modulepath> --add-modules <module>[,<module>...]
 //Possible options include:
 //      --add-modules <mod>[,<mod>...]    Root modules to resolve in addition to the

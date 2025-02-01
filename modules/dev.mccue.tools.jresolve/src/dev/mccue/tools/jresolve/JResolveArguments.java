@@ -2,11 +2,45 @@ package dev.mccue.tools.jresolve;
 import dev.mccue.tools.ToolArguments;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public final class JResolveArguments extends ToolArguments {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
+    }
+
+    public JResolveArguments() {
+        super();
+    }
+
+    public JResolveArguments(Collection<? extends String> c) {
+        super(c);
+    }
+
+    public JResolveArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JResolveArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JResolveArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JResolveArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JResolveArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
     }
 
     public JResolveArguments dependencies(Object... dependencies) {

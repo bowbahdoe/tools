@@ -19,6 +19,31 @@ public final class JUnitArguments extends ToolArguments {
         super(c);
     }
 
+    public JUnitArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JUnitArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JUnitArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JUnitArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JUnitArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     public JUnitArguments discover() {
         add("discover");
         return this;

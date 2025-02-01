@@ -22,6 +22,31 @@ public final class JPackageArguments extends ToolArguments {
         super(c);
     }
 
+    public JPackageArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JPackageArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JPackageArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JPackageArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JPackageArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     // Usage: jpackage <options>
     //
     //Sample usages:

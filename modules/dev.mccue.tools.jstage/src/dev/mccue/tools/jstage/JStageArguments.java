@@ -2,9 +2,45 @@ package dev.mccue.tools.jstage;
 
 import dev.mccue.tools.ToolArguments;
 
+import java.util.Collection;
+import java.util.List;
+
 public final class JStageArguments extends ToolArguments {
     static String toArgumentString(Object o) {
         return o == null ? "" : o.toString();
+    }
+
+    public JStageArguments() {
+        super();
+    }
+
+    public JStageArguments(Collection<? extends String> c) {
+        super(c);
+    }
+
+    public JStageArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JStageArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JStageArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JStageArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JStageArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
     }
 
     public JStageArguments __artifact(Object path) {

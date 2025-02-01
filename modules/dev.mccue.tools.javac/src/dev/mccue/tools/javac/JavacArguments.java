@@ -23,6 +23,31 @@ public final class JavacArguments extends ToolArguments {
         super(c);
     }
 
+    public JavacArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JavacArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JavacArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JavacArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JavacArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     // Usage: javac <options> <source files>
     public JavacArguments sourceFiles(Object... files) {
         return sourceFiles(Arrays.asList(files));

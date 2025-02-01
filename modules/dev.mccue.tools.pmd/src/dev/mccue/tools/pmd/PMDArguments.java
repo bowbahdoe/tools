@@ -21,6 +21,31 @@ public final class PMDArguments extends ToolArguments {
         super(c);
     }
 
+    public PMDArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public PMDArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public PMDArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public PMDArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public PMDArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
     // Usage: pmd check [-bDh] [--no-cache] [--[no-]fail-on-error] [--[no-]
     //                 fail-on-violation] [--[no-]progress] [--show-suppressed]
     //                 [--aux-classpath=<auxClasspath>] [--cache=<cacheLocation>]

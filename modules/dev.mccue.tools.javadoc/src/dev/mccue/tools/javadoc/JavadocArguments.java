@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,31 @@ public final class JavadocArguments extends ToolArguments {
 
     public JavadocArguments(Collection<? extends String> c) {
         super(c);
+    }
+
+    public JavadocArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JavadocArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JavadocArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JavadocArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JavadocArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
     }
 
     // Usage:

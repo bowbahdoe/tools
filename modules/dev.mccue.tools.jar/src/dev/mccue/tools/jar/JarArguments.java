@@ -43,6 +43,30 @@ public final class JarArguments extends ToolArguments {
         super(c);
     }
 
+    public JarArguments argument(Object value) {
+        super.argument(value);
+        return this;
+    }
+
+    public JarArguments arguments(Object... values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JarArguments arguments(List<?> values) {
+        super.arguments(values);
+        return this;
+    }
+
+    public JarArguments separatedArgument(Object separator, Object... values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
+
+    public JarArguments separatedArgument(Object separator, List<?> values) {
+        super.separatedArgument(separator, values);
+        return this;
+    }
 
     //Usage: jar [OPTION...] [ [--release VERSION] [-C dir] files] ...
     //jar creates an archive for classes and resources, and can manipulate or
