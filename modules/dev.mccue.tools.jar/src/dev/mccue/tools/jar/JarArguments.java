@@ -43,26 +43,31 @@ public final class JarArguments extends ToolArguments {
         super(c);
     }
 
+    @Override
     public JarArguments argument(Object value) {
         super.argument(value);
         return this;
     }
 
+    @Override
     public JarArguments arguments(Object... values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public JarArguments arguments(List<?> values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public JarArguments separatedArgument(Object separator, Object... values) {
         super.separatedArgument(separator, values);
         return this;
     }
 
+    @Override
     public JarArguments separatedArgument(Object separator, List<?> values) {
         super.separatedArgument(separator, values);
         return this;

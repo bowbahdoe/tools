@@ -22,26 +22,31 @@ public final class JPackageArguments extends ToolArguments {
         super(c);
     }
 
+    @Override
     public JPackageArguments argument(Object value) {
         super.argument(value);
         return this;
     }
 
+    @Override
     public JPackageArguments arguments(Object... values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public JPackageArguments arguments(List<?> values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public JPackageArguments separatedArgument(Object separator, Object... values) {
         super.separatedArgument(separator, values);
         return this;
     }
 
+    @Override
     public JPackageArguments separatedArgument(Object separator, List<?> values) {
         super.separatedArgument(separator, values);
         return this;

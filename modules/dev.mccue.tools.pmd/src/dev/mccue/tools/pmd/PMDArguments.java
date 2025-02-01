@@ -21,26 +21,31 @@ public final class PMDArguments extends ToolArguments {
         super(c);
     }
 
+    @Override
     public PMDArguments argument(Object value) {
         super.argument(value);
         return this;
     }
 
+    @Override
     public PMDArguments arguments(Object... values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public PMDArguments arguments(List<?> values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public PMDArguments separatedArgument(Object separator, Object... values) {
         super.separatedArgument(separator, values);
         return this;
     }
 
+    @Override
     public PMDArguments separatedArgument(Object separator, List<?> values) {
         super.separatedArgument(separator, values);
         return this;

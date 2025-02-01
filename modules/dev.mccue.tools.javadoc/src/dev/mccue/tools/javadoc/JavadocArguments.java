@@ -24,26 +24,31 @@ public final class JavadocArguments extends ToolArguments {
         super(c);
     }
 
+    @Override
     public JavadocArguments argument(Object value) {
         super.argument(value);
         return this;
     }
 
+    @Override
     public JavadocArguments arguments(Object... values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public JavadocArguments arguments(List<?> values) {
         super.arguments(values);
         return this;
     }
 
+    @Override
     public JavadocArguments separatedArgument(Object separator, Object... values) {
         super.separatedArgument(separator, values);
         return this;
     }
 
+    @Override
     public JavadocArguments separatedArgument(Object separator, List<?> values) {
         super.separatedArgument(separator, values);
         return this;
