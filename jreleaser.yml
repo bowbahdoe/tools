@@ -2,8 +2,9 @@ project:
   name: tool
   version: 2025.02.07
   versionPattern: CHRONVER
-  java:
-    groupId: dev.mccue
+  languages:
+    java:
+      groupId: dev.mccue
 
 signing:
   active: ALWAYS
