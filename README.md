@@ -9,6 +9,6 @@ You can use this library via maven, just add a new dependency to the pom.xml fil
 <dependency>
     <groupId>dev.mccue</groupId>
     <artifactId>tools</artifactId>
-    <version>2025.01.31</version>
+    <version>2026.07.19</version>
 </dependency>
 ```
