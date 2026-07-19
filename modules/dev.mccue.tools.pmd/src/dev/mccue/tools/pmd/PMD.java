@@ -63,7 +63,7 @@ public final class PMD extends AbstractToolRunner<PMD, PMDArguments> {
                             Tool.ofSubprocess("chmod")
                                     .runner()
                                     .echoCommand(false)
-                                    .run("+x", resolvedPath.toString());
+                                    .runWith("+x", resolvedPath.toString());
                         } catch (ExitStatusException e) {
                             throw new IOException(e);
                         }

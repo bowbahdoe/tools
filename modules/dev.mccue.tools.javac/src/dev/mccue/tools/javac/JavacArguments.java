@@ -11,10 +11,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public final class JavacArguments extends ToolArguments {
-    static String toArgumentString(Object o) {
-        return o == null ? "" : o.toString();
-    }
-
     public JavacArguments() {
         super();
     }

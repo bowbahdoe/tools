@@ -9,10 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class JModArguments extends ToolArguments {
-    static String toArgumentString(Object o) {
-        return o == null ? "" : o.toString();
-    }
-
     public JModArguments() {
         super();
     }

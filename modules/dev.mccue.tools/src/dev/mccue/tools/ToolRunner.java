@@ -7,9 +7,9 @@ import java.util.function.Consumer;
 public sealed interface ToolRunner permits AbstractToolRunner {
     void run() throws ExitStatusException;
 
-    void run(List<String> extraArguments) throws ExitStatusException;
+    void runWith(List<String> extraArguments) throws ExitStatusException;
 
-    void run(String... extraArguments) throws ExitStatusException;
+    void runWith(String... extraArguments) throws ExitStatusException;
 
     ToolRunner echoCommand(boolean echo);
 

@@ -34,13 +34,14 @@ public non-sealed abstract class AbstractToolRunner<
     }
 
     @Override
-    public final void run(List<String> extraArguments) throws ExitStatusException {
+    public final void runWith(List<String> extraArguments) throws ExitStatusException {
         arguments.addAll(extraArguments);
         run();
     }
 
     @Override
-    public final void run(String... extraArguments) throws ExitStatusException {
+    @Deprecated(forRemoval = true)
+    public final void runWith(String... extraArguments) throws ExitStatusException {
         arguments.addAll(Arrays.asList(extraArguments));
         run();
     }

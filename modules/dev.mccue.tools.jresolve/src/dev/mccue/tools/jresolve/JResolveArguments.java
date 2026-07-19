@@ -6,9 +6,6 @@ import java.util.Collection;
 import java.util.List;
 
 public final class JResolveArguments extends ToolArguments {
-    static String toArgumentString(Object o) {
-        return o == null ? "" : o.toString();
-    }
 
     public JResolveArguments() {
         super();
